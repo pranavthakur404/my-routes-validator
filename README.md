@@ -11,6 +11,7 @@ This is a simple validation middleware for Express.js that allows you to apply f
 - Easy integration into Express.js route handlers.
 
 ## Installation
+
 Here are the available validation rules you can use:
 
 - required: Ensures the field is not empty.
@@ -25,6 +26,45 @@ Here are the available validation rules you can use:
 - date: Ensures the field value is a valid date.
 - custom: You can provide a custom validation function that returns true for valid - values or false for invalid values.
 
+## Example use
+
+````javascript
+
+import express from "express";
+import bodyParser from "body-parser";
+import { validator } from "./validator.js";
+
+const app = express();
+app.use(bodyParser.json());
+
+const options = {
+  "/custom-validation": [
+    {
+      field: "username",
+      message: "Username is required",
+    },
+    {
+      field: "age",
+      message: "Age must be a valid number and greater than 18",
+      custom: (value) => !isNaN(value) && value > 18,
+    },
+    {
+      field: "password",
+      message: "Password must include at least one special character",
+      custom: (value) => /[!@#$%^&*]/.test(value),
+    },
+  ],
+};
+
+app.post("/custom-validation", validator(options), (req, res) => {
+  res.status(200).json({ message: "Validation passed!", data: req.body });
+});
+
+app.listen(3000, () => {
+  console.log("Server is running on http://localhost:3000");
+});
+
+
 ## Installation
 
 You can install this package via npm:
@@ -33,3 +73,4 @@ You can install this package via npm:
 npm install my-routes-validator
 
 
+````
