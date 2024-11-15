@@ -30,6 +30,6 @@ Here are the available validation rules you can use:
 You can install this package via npm:
 
 ```bash
-npm install validator-middleware
+npm install my-routes-validator
 
 
