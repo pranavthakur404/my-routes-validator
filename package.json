@@ -1,6 +1,6 @@
 {
   "name": "my-routes-validator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "express-route-validator is a lightweight middleware for validating request data (body, params) in Express.js before reaching the controller, ensuring clean and secure route handling.",
   "main": "app.js",
   "type": "module",
