@@ -32,6 +32,22 @@ export const validator = (options) => {
         });
       }
 
+      // Validation for decimal up to 2 places
+      if (rule.decimal2 && !/^\d+(\.\d{1,2})?$/.test(fieldValue)) {
+        errors.push({
+          field: rule.field,
+          message: `${rule.field} should have up to 2 decimal places`,
+        });
+      }
+
+      // Validation for decimal up to 6 places
+      if (rule.decimal6 && !/^\d+(\.\d{1,6})?$/.test(fieldValue)) {
+        errors.push({
+          field: rule.field,
+          message: `${rule.field} should have up to 6 decimal places`,
+        });
+      }
+
       if (rule.max && fieldValue > rule.max) {
         errors.push({
           field: rule.field,
