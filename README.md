@@ -24,6 +24,8 @@ Here are the available validation rules you can use:
 - numeric: Ensures the field value is a valid numeric value.
 - boolean: Ensures the field value is a boolean.
 - date: Ensures the field value is a valid date.
+- decimal2: Ensures the field value has up to 2 decimal places.
+- decimal6: Ensures the field value has up to 6 decimal places.
 - custom: You can provide a custom validation function that returns true for valid - values or false for invalid values.
 
 ## Example use
