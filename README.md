@@ -30,11 +30,10 @@ Here are the available validation rules you can use:
 
 ## Example use
 
-````javascript
-
+```javascript
 import express from "express";
 import bodyParser from "body-parser";
-import { validator } from "./validator.js";
+import { validator } from "my-routes-validator";
 
 const app = express();
 app.use(bodyParser.json());
@@ -44,16 +43,27 @@ const options = {
     {
       field: "username",
       message: "Username is required",
+      required: true,
     },
     {
       field: "age",
       message: "Age must be a valid number and greater than 18",
+      required: true,
       custom: (value) => !isNaN(value) && value > 18,
     },
     {
       field: "password",
       message: "Password must include at least one special character",
+      required: true,
       custom: (value) => /[!@#$%^&*]/.test(value),
+    },
+    {
+      field: "number",
+      message:
+        "Number must have up to two decimal places and up to six decimal places",
+      required: true,
+      decimal2: true,
+      decimal6: true,
     },
   ],
 };
@@ -65,7 +75,7 @@ app.post("/custom-validation", validator(options), (req, res) => {
 app.listen(3000, () => {
   console.log("Server is running on http://localhost:3000");
 });
-
+```
 
 ## Installation
 
@@ -73,6 +83,4 @@ You can install this package via npm:
 
 ```bash
 npm install my-routes-validator
-
-
-````
+```
